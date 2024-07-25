@@ -7,7 +7,6 @@ on:
 
 jobs:
   build_main:
-    needs: create_tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

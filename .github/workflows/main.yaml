@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: GKE Helm Deploy
-        uses: KaribuLab/gke-helm-deploy@v0.1.0
+        uses: KaribuLab/gke-helm-deploy@v0.1.2
         with:
           project_id: ${{ secrets.GKE_PROJECT_ID }}
           region: ${{ secrets.GKE_REGION }}

@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build_main:
+    needs: create_tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: GKE Helm Deploy
+        uses: KaribuLab/gke-helm-deploy@v0.1.0
+        with:
+          project_id: ${{ secrets.GKE_PROJECT_ID }}
+          region: ${{ secrets.GKE_REGION }}
+          cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
+          credentials_json: ${{ secrets.GKE_CREDENTIALS }}
+          chart_path: helm
+          chart_name: gke-gateway-api-example
+          chart_values: |
+            image: karibu/gke-gateway-api-example
+            tag: v0.1.1
+            namespace: ${{ secrets.GKE_NAMESPACE }}
+            app: gke-gateway-api-example
+            port: 1323
+            healthPath: /health

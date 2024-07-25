@@ -1,0 +1,8 @@
+apiVersion: v2
+name: gke-helm-deploy-example
+description: Sample chart for GKE Helm Deploy
+appVersion: "First version chart"
+version: 0.1.0
+maintainers:
+  - name: Patricio Ascencio
+    email: patricio.ascencio@karibu.cl
